@@ -5,6 +5,8 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author rick
@@ -13,8 +15,29 @@ package models;
 public class Node <T extends Comparable>
 {
     
+    
+    
     //<editor-fold defaultstate="collapsed" desc="ATRIBUTOS">
     private T data;
     private java.util.ArrayList<Connection> connections;
     //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="GT & ST">
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public ArrayList<Connection> getConnections() {
+        return connections;
+    }
+
+    public void setConnections(ArrayList<Connection> connections) {
+        this.connections = connections;
+    }
+    //</editor-fold>
+     
 }

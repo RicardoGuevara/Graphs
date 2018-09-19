@@ -12,7 +12,9 @@ package models;
 public class Connection 
 {
     //<editor-fold defaultstate="collapsed" desc="ATRBUTOS">
-    private Node    start_point,
-                    end_point;
+    private Node    start_point,    //Nodo punto de salida
+                    end_point;      //Nodo punto de llegada
+    private int weight;             //peso o valor de la arista
+    private String  name;           //en caso de nesesitar un identificador
     //</editor-fold>
 }

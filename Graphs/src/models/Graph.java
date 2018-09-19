@@ -13,4 +13,8 @@ package models;
 public class Graph <T extends Comparable>
 {
     
+    //<editor-fold defaultstate="collapsed" desc="ATRBUTOS">
+    private java.util.ArrayList<Node<T>> nodes;
+    private java.util.ArrayList<Connection> connections;
+    //</editor-fold>
 }
