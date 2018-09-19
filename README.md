@@ -1,2 +1,2 @@
-# Grphs
+# Graphs
 grafos pues
