@@ -5,16 +5,33 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author rick
  * @param <T> _ data type for all nodes
  */
-public class Graph <T extends Comparable>
+public class Graph <T extends Comparable> extends DiGraph
 {
+
+    //<editor-fold defaultstate="collapsed" desc="CONSTRUCTORES">
+    public Graph(){super();} 
+
+    public Graph(ArrayList nodes, ArrayList connections) {super(nodes, connections);}
     
-    //<editor-fold defaultstate="collapsed" desc="ATRBUTOS">
-    private java.util.ArrayList<Node<T>> nodes;
-    private java.util.ArrayList<Connection> connections;
+    public Graph(Node... n){super(n);}
     //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="DEFAULT METHODS">
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        return new Graph((ArrayList)(this.nodes.clone()),(ArrayList)(this.connections.clone()));
+    }
+    
+    //</editor-fold>
+    
+    
+    
 }
