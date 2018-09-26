@@ -109,8 +109,8 @@ public class NavegadorPrueba extends JPanel {
     public void changePag(String ruta){
         
         java.io.File file = new java.io.File(ruta);
-        
-        this.ruta = ((System.getProperty("os.name").equals("Mac OS X"))? "file://":"file:///")+java.net.URI.create(file.getAbsolutePath()).toString();
+        System.out.println("ruta: "+((System.getProperty("os.name").contains("Mac OS X"))? "file://":"file://")+file.getAbsolutePath());
+        this.ruta = ((System.getProperty("os.name").contains("Mac OS X"))? "file://":"file:///")+file.getAbsolutePath();
         
     }
     

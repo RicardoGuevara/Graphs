@@ -41,7 +41,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="input">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JPanel)(new gui.GraphicInput())"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="(javax.swing.JPanel)new maploader.NavegadorPrueba(&quot;prueba_maps.html&quot;)"/>
       </AuxValues>
 
       <Layout>

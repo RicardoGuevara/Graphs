@@ -27,10 +27,9 @@ public class GeneralGUI extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
-        input = (javax.swing.JPanel)(new gui.GraphicInput());
+        input = (javax.swing.JPanel)new maploader.NavegadorPrueba("prueba_maps.html");
         output = new javax.swing.JPanel();
         tabla_ady = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -52,22 +51,19 @@ public class GeneralGUI extends javax.swing.JFrame
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         tabla_ady.setViewportView(jTable1);
 
-        lista_info.setModel(new javax.swing.AbstractListModel<String>()
-        {
+        lista_info.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
