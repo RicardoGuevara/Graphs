@@ -33,10 +33,6 @@ public class GeneralGUI extends javax.swing.JFrame
 
         input = new javax.swing.JPanel();
         output = new javax.swing.JPanel();
-        tabla_ady = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        panel_info = new javax.swing.JScrollPane();
-        lista_info = new javax.swing.JList<>();
         btn_save_ss = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,29 +48,6 @@ public class GeneralGUI extends javax.swing.JFrame
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String []
-            {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tabla_ady.setViewportView(jTable1);
-
-        lista_info.setModel(new javax.swing.AbstractListModel<String>()
-        {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        panel_info.setViewportView(lista_info);
-
         btn_save_ss.setText("Salvar Screen-Shot");
 
         javax.swing.GroupLayout outputLayout = new javax.swing.GroupLayout(output);
@@ -83,20 +56,13 @@ public class GeneralGUI extends javax.swing.JFrame
             outputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(outputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabla_ady, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-                    .addComponent(panel_info)
-                    .addComponent(btn_save_ss, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btn_save_ss, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                 .addContainerGap())
         );
         outputLayout.setVerticalGroup(
             outputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outputLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabla_ady, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_info, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addContainerGap(622, Short.MAX_VALUE)
                 .addComponent(btn_save_ss)
                 .addContainerGap())
         );
@@ -183,10 +149,6 @@ public class GeneralGUI extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_save_ss;
     private javax.swing.JPanel input;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JList<String> lista_info;
     private javax.swing.JPanel output;
-    private javax.swing.JScrollPane panel_info;
-    private javax.swing.JScrollPane tabla_ady;
     // End of variables declaration//GEN-END:variables
 }
