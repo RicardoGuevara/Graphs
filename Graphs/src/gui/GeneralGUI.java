@@ -34,6 +34,12 @@ public class GeneralGUI extends javax.swing.JFrame
         input = new javax.swing.JPanel();
         output = new javax.swing.JPanel();
         btn_save_ss = new javax.swing.JButton();
+        panel_vista_previa = new javax.swing.JPanel();
+        label_vista_previa = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textarea_instrucciones = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        btn_vistaprevia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +54,39 @@ public class GeneralGUI extends javax.swing.JFrame
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        btn_save_ss.setText("Salvar Screen-Shot");
+        btn_save_ss.setText("Seleccionar mapa");
+        btn_save_ss.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_save_ssActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_vista_previaLayout = new javax.swing.GroupLayout(panel_vista_previa);
+        panel_vista_previa.setLayout(panel_vista_previaLayout);
+        panel_vista_previaLayout.setHorizontalGroup(
+            panel_vista_previaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_vista_previaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_vista_previa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panel_vista_previaLayout.setVerticalGroup(
+            panel_vista_previaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_vista_previaLayout.createSequentialGroup()
+                .addComponent(label_vista_previa, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        textarea_instrucciones.setColumns(20);
+        textarea_instrucciones.setRows(5);
+        jScrollPane1.setViewportView(textarea_instrucciones);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Ricardo Guevara Payán");
+
+        btn_vistaprevia.setText("Vista Previa del mapa");
 
         javax.swing.GroupLayout outputLayout = new javax.swing.GroupLayout(output);
         output.setLayout(outputLayout);
@@ -56,15 +94,30 @@ public class GeneralGUI extends javax.swing.JFrame
             outputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_save_ss, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addGroup(outputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_vista_previa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_save_ss, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(outputLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addComponent(btn_vistaprevia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         outputLayout.setVerticalGroup(
             outputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(outputLayout.createSequentialGroup()
-                .addContainerGap(622, Short.MAX_VALUE)
-                .addComponent(btn_save_ss)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outputLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_vistaprevia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel_vista_previa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_save_ss, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,6 +138,11 @@ public class GeneralGUI extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_save_ssActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_save_ssActionPerformed
+    {//GEN-HEADEREND:event_btn_save_ssActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_save_ssActionPerformed
 
     public void cambiarPanel(javax.swing.JPanel content) {
         this.input.removeAll();
@@ -148,7 +206,13 @@ public class GeneralGUI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_save_ss;
+    private javax.swing.JButton btn_vistaprevia;
     private javax.swing.JPanel input;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_vista_previa;
     private javax.swing.JPanel output;
+    private javax.swing.JPanel panel_vista_previa;
+    private javax.swing.JTextArea textarea_instrucciones;
     // End of variables declaration//GEN-END:variables
 }
