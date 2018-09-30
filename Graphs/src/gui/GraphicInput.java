@@ -22,6 +22,8 @@ public class GraphicInput extends javax.swing.JPanel
     public GraphicInput()
     {
         initComponents();
+        label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
+        
     }
 
     /**
@@ -33,6 +35,8 @@ public class GraphicInput extends javax.swing.JPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents()
     {
+
+        label_fondo_mapa = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(650, 615));
         addMouseListener(new java.awt.event.MouseAdapter()
@@ -51,11 +55,11 @@ public class GraphicInput extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addComponent(label_fondo_mapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 615, Short.MAX_VALUE)
+            .addComponent(label_fondo_mapa, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -80,5 +84,6 @@ public class GraphicInput extends javax.swing.JPanel
     public static int point_diameter=20;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel label_fondo_mapa;
     // End of variables declaration//GEN-END:variables
 }

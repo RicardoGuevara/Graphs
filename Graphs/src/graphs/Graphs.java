@@ -5,6 +5,8 @@
  */
 package graphs;
 
+import java.awt.AWTException;
+import java.io.IOException;
 import models.*;
 
 /**
@@ -24,6 +26,12 @@ public class Graphs {
         System.out.println(dg);
         
         gui.GeneralGUI.main(args);
+    }
+    
+    public static void save_screen_shot(java.awt.Rectangle space, String fileName) throws AWTException, IOException
+    {
+        java.awt.image.BufferedImage imagen = (new java.awt.Robot().createScreenCapture(space));
+        javax.imageio.ImageIO.write(imagen, "jpg", new java.io.File(fileName));
     }
     
     

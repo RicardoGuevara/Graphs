@@ -5,6 +5,12 @@
  */
 package gui;
 
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author rick
@@ -87,6 +93,13 @@ public class GeneralGUI extends javax.swing.JFrame
         jLabel1.setText("Ricardo Guevara Payán");
 
         btn_vistaprevia.setText("Vista Previa del mapa");
+        btn_vistaprevia.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_vistapreviaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout outputLayout = new javax.swing.GroupLayout(output);
         output.setLayout(outputLayout);
@@ -141,9 +154,35 @@ public class GeneralGUI extends javax.swing.JFrame
 
     private void btn_save_ssActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_save_ssActionPerformed
     {//GEN-HEADEREND:event_btn_save_ssActionPerformed
-        // TODO add your handling code here:
+        map_ss();
+        cambiarPanel(new GraphicInput());
     }//GEN-LAST:event_btn_save_ssActionPerformed
 
+    private void btn_vistapreviaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_vistapreviaActionPerformed
+    {//GEN-HEADEREND:event_btn_vistapreviaActionPerformed
+        map_ss();
+        
+    }//GEN-LAST:event_btn_vistapreviaActionPerformed
+
+    private void map_ss()
+    {
+        Rectangle r = new Rectangle(input.getLocationOnScreen().x,input.getLocationOnScreen().y+23,input.getWidth(),input.getHeight()-46);
+        
+        try
+        {
+            graphs.Graphs.save_screen_shot(r, "src/gui/seleccion_mapa.jpg");
+        } catch (AWTException ex)
+        {
+            System.out.println("error ráfico en:");
+            ex.printStackTrace();
+        } catch (IOException ex)
+        {
+            System.out.println("error de archivo en:");
+            ex.printStackTrace();
+        }
+        
+    }
+    
     public void cambiarPanel(javax.swing.JPanel content) {
         this.input.removeAll();
         this.input.revalidate();
