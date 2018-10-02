@@ -21,6 +21,8 @@ public class Node <T extends Comparable>
     public Node(T data)
     {
         this.data = data;
+        this.id= actid;
+        actid++;
     }
 
     public Node(T data, Point location, Rectangle space)
@@ -28,6 +30,11 @@ public class Node <T extends Comparable>
         this(data);
         this.location = location;
         this.space = space;
+    }
+
+    public Node(Point location)
+    {
+        this((T)"nodo",graphs.Graphs.grafo,location,new Rectangle(location.x,location.y,diameter,diameter));
     }
 
     public Node(T data, DiGraph graph, Point location, Rectangle space)
@@ -53,6 +60,9 @@ public class Node <T extends Comparable>
     private java.util.ArrayList<Connection> connections;
     private Point location;
     private Rectangle space;
+    public int id;
+    private static int actid = 0;
+    public static int diameter = 25;
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="GT & ST">

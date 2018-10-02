@@ -8,8 +8,6 @@ package gui;
 import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -173,7 +171,7 @@ public class GeneralGUI extends javax.swing.JFrame
             graphs.Graphs.save_screen_shot(r, "src/gui/seleccion_mapa.jpg");
         } catch (AWTException ex)
         {
-            System.out.println("error ráfico en:");
+            System.out.println("error gráfico en:");
             ex.printStackTrace();
         } catch (IOException ex)
         {

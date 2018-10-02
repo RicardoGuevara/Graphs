@@ -8,6 +8,9 @@ package gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
+import javafx.scene.input.KeyCode;
+import models.*;
 
 /**
  *
@@ -23,7 +26,7 @@ public class GraphicInput extends javax.swing.JPanel
     {
         initComponents();
         label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
-        
+        this.requestFocus();
     }
 
     /**
@@ -50,6 +53,13 @@ public class GraphicInput extends javax.swing.JPanel
                 formMouseClicked(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                formKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,7 +75,9 @@ public class GraphicInput extends javax.swing.JPanel
 
     private void formMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMouseClicked
     {//GEN-HEADEREND:event_formMouseClicked
-        drawPoint(this.getGraphics(),evt.getPoint());
+        clickOnMap(evt.getPoint());
+        //System.out.println(graphs.Graphs.grafo);
+        this.requestFocus(); //para poder detectar los pressed
     }//GEN-LAST:event_formMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMousePressed
@@ -73,16 +85,59 @@ public class GraphicInput extends javax.swing.JPanel
         
     }//GEN-LAST:event_formMousePressed
 
-    private void drawPoint(Graphics g,Point p)
+    private void formKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_formKeyTyped
+    {//GEN-HEADEREND:event_formKeyTyped
+        if(ant_selected!=null)if(evt.getKeyCode()==0)delActualNode(this.getGraphics());
+    }//GEN-LAST:event_formKeyTyped
+
+    private void clickOnMap(Point p)
     {
-        g.setColor(Color.red);
+        Node<String> n = graphs.Graphs.grafo.getNodeAt(p);
+        if(n==null) createNode(p);
+        else selectNode(n);
+    }
+    
+    private void createNode(Point p)
+    {
+        p= new Point(p.x-(int)(Node.diameter/2),p.y-(int)(Node.diameter/2)); //ajusta el punto al centro
+        graphs.Graphs.grafo.add(new Node<String>(p));
+        drawPoint(this.getGraphics(),p,Color.RED);
+        //drawInfo(this.getGraphics(),p,"node");
+    }
+    
+    private void selectNode(Node n)
+    {
+        if(ant_selected!=null)drawPoint(this.getGraphics(),ant_selected.getLocation(),Color.RED);
+        drawPoint(this.getGraphics(),n.getLocation(),Color.BLUE);
+        ant_selected = n;
+    }
+    
+    private void drawPoint(Graphics g,Point p,Color color)
+    {
+        //g.setColor(color.darker().darker().darker().darker()); // señor perdoname por esto 7n7
+        //g.setColor(new Color(255-color.getRed(),255-color.getGreen(),255-color.getBlue())); // negativo del color
+        g.setColor(Color.BLACK);
+        g.drawOval(p.x, p.y, Node.diameter-3, Node.diameter-3); // (-3) para evitar sobreponer os bordes
+        g.setColor(color);
         //g.fillOval(p.x-point_diameter/2, p.y-point_diameter/2, point_diameter, point_diameter);
-        g.fillOval(p.x, p.y, point_diameter, point_diameter);
+        g.fillOval(p.x, p.y, Node.diameter-3, Node.diameter-3); // (-3) para evitar sobreponer os bordes
+    }
+    
+    private void drawInfo(Graphics g ,Point p,String s)
+    {
+        g.setColor(Color.BLACK);
+        g.drawString(s, p.x, p.y);
+    }
+    
+    private void delActualNode(Graphics g)
+    {
+        Rectangle r = ant_selected.getSpace();
+        g.clearRect(r.x, r.y, r.width, r.height);
+        ant_selected=null;
     }
     
     
-    public static int point_diameter=20;
-    
+    private Node ant_selected;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel label_fondo_mapa;
     // End of variables declaration//GEN-END:variables

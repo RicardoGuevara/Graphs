@@ -75,6 +75,28 @@ public class DiGraph <T extends Comparable>
         }
     }
     
+    public Node<T> getNodeAt(java.awt.Point p)
+    {
+        for (Node<T> node : nodes)
+        {
+            if(node.getSpace().contains(p)) return node;
+        }
+        return null;
+    }
+    
+    public Node<T> searchNode(int id)
+    {
+        for (Node<T> node : nodes)
+        {
+            if(node.id == id) return node;
+        }
+        return null;
+    }
+    
+    public void del(Node<T> node)
+    {
+        this.nodes.remove(node);
+    }
     
     //<editor-fold defaultstate="collapsed" desc="ATRBUTOS">
     protected java.util.ArrayList<Node<T>> nodes;

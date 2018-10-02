@@ -19,12 +19,8 @@ public class Graphs {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws CloneNotSupportedException {
-        Graph<Integer> g = new Graph<>();
-        System.out.println(g);
-        System.out.println(g.clone());
-        DiGraph dg = new DiGraph();
-        System.out.println(dg);
         
+        grafo = new Graph<String>();
         gui.GeneralGUI.main(args);
     }
     
@@ -34,5 +30,6 @@ public class Graphs {
         javax.imageio.ImageIO.write(imagen, "jpg", new java.io.File(fileName));
     }
     
+    public static Graph<String> grafo;
     
 }
