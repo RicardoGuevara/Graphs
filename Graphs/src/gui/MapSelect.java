@@ -5,10 +5,6 @@
  */
 package gui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-
 /**
  *
  * @author rick
@@ -95,8 +91,6 @@ public class MapSelect extends javax.swing.JPanel
     {//GEN-HEADEREND:event_formMousePressed
         
     }//GEN-LAST:event_formMousePressed
-    
-    public static int point_diameter=20;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_fijar;
