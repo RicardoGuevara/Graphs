@@ -61,16 +61,18 @@ public class DiGraph <T extends Comparable>
     
     public void add(Node<T>... n)
     {
-        for (Node node : n) {
-            this.nodes.add(node);
-            node.setGraph(this);
-        }
+    for (Node node : n) {
+    this.nodes.add(node);
+    node.setGraph(this);
+    }
     }
     
     public void add(Connection... c)
     {
         for (Connection connection : c) {
             this.connections.add(connection);
+            connection.getStart_point().getConnections().add(c);
+            connection.getEnd_point().getConnections().add(c);
             connection.setGraph(this);
         }
     }
@@ -96,6 +98,18 @@ public class DiGraph <T extends Comparable>
     public void del(Node<T> node)
     {
         this.nodes.remove(node);
+        /*ArrayList<Connection> c = node.getConnections();
+        c.forEach((connection) ->
+        {
+        this.connections.remove(connection);
+        });*/
+        ArrayList<Connection> con = new ArrayList<>();
+        for (Connection connection : connections)
+        {
+            if(connection.getStart_point().equals(node)||connection.getEnd_point().equals(node)) con.add(connection);
+        }
+        connections.removeAll(con);
+        System.out.println(this);
     }
     
     //<editor-fold defaultstate="collapsed" desc="ATRBUTOS">
@@ -103,7 +117,7 @@ public class DiGraph <T extends Comparable>
     protected java.util.ArrayList<Connection> connections;
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="GT &ST">
+    //<editor-fold defaultstate="collapsed" desc="GT & ST">
     public ArrayList<Node<T>> getNodes() {
         return nodes;
     }

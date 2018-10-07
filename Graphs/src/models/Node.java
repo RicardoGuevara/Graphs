@@ -23,6 +23,7 @@ public class Node <T extends Comparable>
         this.data = data;
         this.id= actid;
         actid++;
+        connections = new ArrayList<Connection>();
     }
 
     public Node(T data, Point location, Rectangle space)
@@ -41,7 +42,7 @@ public class Node <T extends Comparable>
     {
         this(data,location,space);
         this.graph = graph;
-        graph.add(this);
+        //graph.add(this);
     }
 
     public Node(T data, DiGraph graph, ArrayList<Connection> connections, Point location, Rectangle space)
@@ -52,6 +53,23 @@ public class Node <T extends Comparable>
         this.location = location;
         this.space = space;
     }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="DEFAULT METHODS">
+    
+    @Override
+    public boolean equals(Object ob)
+    {
+        if(!(ob instanceof Node)) return false;
+        return this.id == ((Node)ob).id;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return this.data+" "+this.id;
+    }
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="ATRIBUTOS">
@@ -110,6 +128,11 @@ public class Node <T extends Comparable>
     public void setSpace(Rectangle space)
     {
         this.space = space;
+    }
+    
+    public Point getCenter()
+    {
+        return new Point(this.location.x+diameter/2,this.location.y+diameter/2);
     }
     
     //</editor-fold>

@@ -48,6 +48,10 @@ public class GraphicInput extends javax.swing.JPanel
             {
                 formMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                formMouseReleased(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 formMouseClicked(evt);
@@ -82,7 +86,7 @@ public class GraphicInput extends javax.swing.JPanel
 
     private void formMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMousePressed
     {//GEN-HEADEREND:event_formMousePressed
-        
+        startConnection(evt.getPoint());
     }//GEN-LAST:event_formMousePressed
 
     private void formKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_formKeyTyped
@@ -90,6 +94,37 @@ public class GraphicInput extends javax.swing.JPanel
         if(ant_selected!=null)if(evt.getKeyCode()==0)delActualNode(this.getGraphics());
     }//GEN-LAST:event_formKeyTyped
 
+    private void formMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMouseReleased
+    {//GEN-HEADEREND:event_formMouseReleased
+        endConnection(evt.getPoint());
+    }//GEN-LAST:event_formMouseReleased
+
+    //<editor-fold>
+    private void startConnection(Point p)
+    {
+        start = graphs.Graphs.grafo.getNodeAt(p);
+    }
+    
+    private void endConnection(Point p)
+    {
+        end = graphs.Graphs.grafo.getNodeAt(p);
+        if(start!=null && end!=null && (!(start.equals(end))))
+        {
+            graphs.Graphs.grafo.add(new Connection(start,end));
+            drawConnection(this.getGraphics(),start,end);
+        }
+    }
+    
+    private void drawConnection(Graphics g,Node s, Node e)
+    {
+        g.setColor(Color.BLACK);
+        g.drawLine(s.getCenter().x, s.getCenter().y, e.getCenter().x, e.getCenter().y);
+    }
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="CREAR NODO">
+    
     private void clickOnMap(Point p)
     {
         Node<String> n = graphs.Graphs.grafo.getNodeAt(p);
@@ -117,10 +152,10 @@ public class GraphicInput extends javax.swing.JPanel
         //g.setColor(color.darker().darker().darker().darker()); // señor perdoname por esto 7n7
         //g.setColor(new Color(255-color.getRed(),255-color.getGreen(),255-color.getBlue())); // negativo del color
         g.setColor(Color.BLACK);
-        g.drawOval(p.x, p.y, Node.diameter-3, Node.diameter-3); // (-3) para evitar sobreponer os bordes
+        g.drawOval(p.x, p.y, Node.diameter, Node.diameter); // (-3) para evitar sobreponer os bordes
         g.setColor(color);
         //g.fillOval(p.x-point_diameter/2, p.y-point_diameter/2, point_diameter, point_diameter);
-        g.fillOval(p.x, p.y, Node.diameter-3, Node.diameter-3); // (-3) para evitar sobreponer os bordes
+        g.fillOval(p.x, p.y, Node.diameter, Node.diameter); // (-3) para evitar sobreponer os bordes
     }
     
     private void drawInfo(Graphics g ,Point p,String s)
@@ -129,15 +164,37 @@ public class GraphicInput extends javax.swing.JPanel
         g.drawString(s, p.x, p.y);
     }
     
+    //</editor-fold>
+    
     private void delActualNode(Graphics g)
     {
         Rectangle r = ant_selected.getSpace();
         g.clearRect(r.x, r.y, r.width, r.height);
+        graphs.Graphs.grafo.del(ant_selected);
         ant_selected=null;
+        reloadGraph(this.getGraphics());
     }
     
+    private void reloadGraph(Graphics g)
+    {
+        label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
+        java.util.ArrayList<Node> nodes = (graphs.Graphs.grafo.getNodes());
+        for (Node node : nodes)
+        {
+            drawPoint(g,node.getLocation(),Color.RED);
+        }
+        java.util.ArrayList<Connection> cons = (graphs.Graphs.grafo.getConnections());
+        for (Connection con : cons)
+        {
+            drawConnection(g,con.getStart_point(),con.getEnd_point());
+        }
+        
+        this.requestFocus();
+    }
     
-    private Node ant_selected;
+    private Node    ant_selected,   //anterior nodo seleccionado
+                    start,          //inicio de conección
+                    end;            //fin de conección
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel label_fondo_mapa;
     // End of variables declaration//GEN-END:variables

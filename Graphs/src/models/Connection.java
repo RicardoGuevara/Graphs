@@ -20,6 +20,8 @@ public class Connection
     {
         this.start_point = start_point;
         this.end_point = end_point;
+        this.start_graphic= start_point.getCenter();
+        this.end_graphic = end_point.getCenter();
         this.graph=(start_point.getGraph());
     }
 
@@ -30,19 +32,25 @@ public class Connection
         this.name = name;
     }
 
-    public Connection(Node start_point, Node end_point, Point start_graphic, Point end_graphic)
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="DEFAULT METHODS">
+    
+    @Override
+    public String toString()
     {
-        this(start_point,end_point);
-        this.start_graphic = start_graphic;
-        this.end_graphic = end_graphic;
+        return this.start_point+"-"+this.end_point;
     }
-
-    public Connection(Node start_point, Node end_point, int weight, String name, Point start_graphic, Point end_graphic)
+    
+    @Override
+    public boolean equals(Object ob)
     {
-        this(start_point,end_point,weight,name);
-        this.start_graphic = start_graphic;
-        this.end_graphic = end_graphic;
+        if(!(ob instanceof Connection))return false;
+        return 
+            this.start_point.equals(((Connection)ob).start_point) && this.end_point.equals(((Connection)ob).end_point)
+            ||this.start_point.equals(((Connection)ob).end_point) && this.end_point.equals(((Connection)ob).start_point);    
     }
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="ATRBUTOS">

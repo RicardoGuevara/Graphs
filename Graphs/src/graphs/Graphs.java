@@ -28,6 +28,7 @@ public class Graphs {
     {
         java.awt.image.BufferedImage imagen = (new java.awt.Robot().createScreenCapture(space));
         javax.imageio.ImageIO.write(imagen, "jpg", new java.io.File(fileName));
+        
     }
     
     public static Graph<String> grafo;
