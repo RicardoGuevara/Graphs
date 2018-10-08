@@ -200,9 +200,8 @@ public class GraphicInput extends javax.swing.JPanel
     
     private void reloadGraph(Graphics g)
     {
-        //label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
+        label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
         //label_fondo_mapa.repaint();
-        g.dispose();
         java.util.ArrayList<Node> nodes = (graphs.Graphs.grafo.getNodes());
         for (Node node : nodes)
         {
