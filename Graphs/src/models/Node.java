@@ -32,10 +32,10 @@ public class Node <T extends Comparable>
         this.location = location;
         this.space = space;
     }
-
-    public Node(Point location)
+    
+    public Node(Point location, T data)
     {
-        this((T)"nodo",graphs.Graphs.grafo,location,new Rectangle(location.x,location.y,diameter,diameter));
+        this(data,graphs.Graphs.grafo,location,new Rectangle(location.x,location.y,diameter,diameter));
     }
 
     public Node(T data, DiGraph graph, Point location, Rectangle space)
@@ -80,7 +80,7 @@ public class Node <T extends Comparable>
     private Rectangle space;
     public int id;
     private static int actid = 0;
-    public static int diameter = 25;
+    public static int diameter = 50;
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="GT & ST">

@@ -9,7 +9,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.TrayIcon.MessageType;
 import javafx.scene.input.KeyCode;
+import javax.swing.JOptionPane;
 import models.*;
 
 /**
@@ -127,23 +129,45 @@ public class GraphicInput extends javax.swing.JPanel
     
     private void clickOnMap(Point p)
     {
-        Node<String> n = graphs.Graphs.grafo.getNodeAt(p);
+        Node<String> n = evaluate_colission_box_point(p);
         if(n==null) createNode(p);
         else selectNode(n);
     }
     
+    private Node evaluate_colission_box_point(Point p)
+    {
+        Node<String> n = graphs.Graphs.grafo.getNodeAt(p);
+        if(n!=null) return n;
+        n = graphs.Graphs.grafo.getNodeAt(new Point(p.x-Node.diameter/2,p.y-Node.diameter/2));
+        if(n!=null) return n;
+        n = graphs.Graphs.grafo.getNodeAt(new Point(p.x-Node.diameter/2,p.y+Node.diameter/2));
+        if(n!=null) return n;
+        n = graphs.Graphs.grafo.getNodeAt(new Point(p.x+Node.diameter/2,p.y-Node.diameter/2));
+        if(n!=null) return n;
+        n = graphs.Graphs.grafo.getNodeAt(new Point(p.x+Node.diameter/2,p.y+Node.diameter/2));
+        return n;
+    }
     private void createNode(Point p)
     {
         p= new Point(p.x-(int)(Node.diameter/2),p.y-(int)(Node.diameter/2)); //ajusta el punto al centro
-        graphs.Graphs.grafo.add(new Node<String>(p));
-        drawPoint(this.getGraphics(),p,Color.RED);
-        //drawInfo(this.getGraphics(),p,"node");
+        Node n = new Node<String>(p,JOptionPane.showInputDialog(this,"Nombre de este punto","Nombre",MessageType.NONE.ordinal()));
+        if(n.getData()!=null)   //se cancelo la creción del nodo
+        {
+            graphs.Graphs.grafo.add(n);
+            drawPoint(this.getGraphics(),p,Color.RED);
+            drawInfo(this.getGraphics(),n);
+        }
     }
     
     private void selectNode(Node n)
     {
-        if(ant_selected!=null)drawPoint(this.getGraphics(),ant_selected.getLocation(),Color.RED);
+        if(ant_selected!=null)
+        {
+            drawPoint(this.getGraphics(),ant_selected.getLocation(),Color.RED);
+            drawInfo(this.getGraphics(),ant_selected);
+        }
         drawPoint(this.getGraphics(),n.getLocation(),Color.BLUE);
+        drawInfo(this.getGraphics(),n);
         ant_selected = n;
     }
     
@@ -152,24 +176,23 @@ public class GraphicInput extends javax.swing.JPanel
         //g.setColor(color.darker().darker().darker().darker()); // señor perdoname por esto 7n7
         //g.setColor(new Color(255-color.getRed(),255-color.getGreen(),255-color.getBlue())); // negativo del color
         g.setColor(Color.BLACK);
-        g.drawOval(p.x, p.y, Node.diameter, Node.diameter); // (-3) para evitar sobreponer os bordes
+        g.drawOval(p.x, p.y, Node.diameter, Node.diameter);
         g.setColor(color);
-        //g.fillOval(p.x-point_diameter/2, p.y-point_diameter/2, point_diameter, point_diameter);
-        g.fillOval(p.x, p.y, Node.diameter, Node.diameter); // (-3) para evitar sobreponer os bordes
+        g.fillOval(p.x, p.y, Node.diameter, Node.diameter);
     }
     
-    private void drawInfo(Graphics g ,Point p,String s)
+    private void drawInfo(Graphics g ,Node n)
     {
-        g.setColor(Color.BLACK);
-        g.drawString(s, p.x, p.y);
+        g.setColor(Color.WHITE);
+        g.drawString((String)n.getData(), n.getLocation().x+5, n.getCenter().y);
     }
     
     //</editor-fold>
     
     private void delActualNode(Graphics g)
     {
-        Rectangle r = ant_selected.getSpace();
-        g.clearRect(r.x, r.y, r.width, r.height);
+        //Rectangle r = ant_selected.getSpace();
+        //g.clearRect(r.x, r.y, r.width, r.height);
         graphs.Graphs.grafo.del(ant_selected);
         ant_selected=null;
         reloadGraph(this.getGraphics());
@@ -177,18 +200,21 @@ public class GraphicInput extends javax.swing.JPanel
     
     private void reloadGraph(Graphics g)
     {
-        label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
+        //label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
+        //label_fondo_mapa.repaint();
+        g.dispose();
         java.util.ArrayList<Node> nodes = (graphs.Graphs.grafo.getNodes());
         for (Node node : nodes)
         {
             drawPoint(g,node.getLocation(),Color.RED);
+            drawInfo(g,node);
         }
         java.util.ArrayList<Connection> cons = (graphs.Graphs.grafo.getConnections());
         for (Connection con : cons)
         {
+            System.out.println(con);
             drawConnection(g,con.getStart_point(),con.getEnd_point());
         }
-        
         this.requestFocus();
     }
     
