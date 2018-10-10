@@ -11,6 +11,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.TrayIcon.MessageType;
 import javafx.scene.input.KeyCode;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import models.*;
 
@@ -27,10 +28,14 @@ public class GraphicInput extends javax.swing.JPanel
     public GraphicInput()
     {
         initComponents();
-        label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
         this.requestFocus();
     }
 
+    public void paint(Graphics g)
+    {
+        g.drawImage(new ImageIcon("/gui/seleccion_mapa.jpg").getImage(),0,0, this.getWidth(), this.getHeight(), this);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,31 +43,22 @@ public class GraphicInput extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
-
-        label_fondo_mapa = new javax.swing.JLabel();
+    private void initComponents() {
 
         setPreferredSize(new java.awt.Dimension(650, 615));
-        addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt)
-            {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
-        addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 formKeyTyped(evt);
             }
         });
@@ -71,11 +67,11 @@ public class GraphicInput extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_fondo_mapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_fondo_mapa, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+            .addGap(0, 615, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -200,8 +196,7 @@ public class GraphicInput extends javax.swing.JPanel
     
     private void reloadGraph(Graphics g)
     {
-        label_fondo_mapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/seleccion_mapa.jpg")));
-        //label_fondo_mapa.repaint();
+        paint(g);
         java.util.ArrayList<Node> nodes = (graphs.Graphs.grafo.getNodes());
         for (Node node : nodes)
         {
@@ -221,6 +216,5 @@ public class GraphicInput extends javax.swing.JPanel
                     start,          //inicio de conección
                     end;            //fin de conección
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel label_fondo_mapa;
     // End of variables declaration//GEN-END:variables
 }
