@@ -6,8 +6,11 @@
 package gui;
 
 import java.awt.AWTException;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,9 +23,16 @@ public class Gui extends javax.swing.JFrame {
      */
     public Gui() {
         initComponents();
-        cambiarPanel(new maploader.NavegadorPrueba("prueba_carto.html"));
+        cambiarPanel(this.input,new maploader.NavegadorPrueba("prueba_carto.html"));
+        this.kruskal_btn.setVisible(false);
+        this.Prim_btn.setVisible(false);
+        input.requestFocus();
+        
     }
 
+ 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,30 +40,78 @@ public class Gui extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         input = new javax.swing.JPanel();
         opciones1_panel = new javax.swing.JPanel();
         salir_panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        kruskal_btn = new javax.swing.JPanel();
+        kk_btn = new javax.swing.JLabel();
+        Prim_btn = new javax.swing.JPanel();
+        pm_btn = new javax.swing.JLabel();
+        resultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        input.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                inputMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt)
+            {
+                inputMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                inputMouseClicked(evt);
+            }
+        });
+        input.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                inputKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout inputLayout = new javax.swing.GroupLayout(input);
         input.setLayout(inputLayout);
         inputLayout.setHorizontalGroup(
             inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGap(0, 671, Short.MAX_VALUE)
         );
         inputLayout.setVerticalGroup(
             inputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
 
         opciones1_panel.setBackground(new java.awt.Color(0, 0, 0));
 
-        salir_panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        salir_panel.setBackground(new java.awt.Color(204, 0, 0));
+        salir_panel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 salir_panelMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("X");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel1MouseClicked(evt);
             }
         });
 
@@ -61,26 +119,150 @@ public class Gui extends javax.swing.JFrame {
         salir_panel.setLayout(salir_panelLayout);
         salir_panelLayout.setHorizontalGroup(
             salir_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
         salir_panelLayout.setVerticalGroup(
             salir_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("COMENZAR");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Para empezar a diseñar el grafo por\ndebe seleccionar la hubicación en la\nque desea hacerlo.\n\nA la izquierda encuentra una ventana\ncon un explorador que le permitirá\nescoger una hubicación real.\n\npresione el boton \"COMENZAR\" para\nseleccionar el mapa actual y empezar\na diseñar su grafo.");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        kruskal_btn.setBackground(new java.awt.Color(255, 255, 255));
+
+        kk_btn.setBackground(new java.awt.Color(0, 0, 0));
+        kk_btn.setForeground(new java.awt.Color(0, 0, 0));
+        kk_btn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kk_btn.setText("KRUSKAL");
+        kk_btn.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                kk_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout kruskal_btnLayout = new javax.swing.GroupLayout(kruskal_btn);
+        kruskal_btn.setLayout(kruskal_btnLayout);
+        kruskal_btnLayout.setHorizontalGroup(
+            kruskal_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kruskal_btnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kk_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        kruskal_btnLayout.setVerticalGroup(
+            kruskal_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kruskal_btnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(kk_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Prim_btn.setBackground(new java.awt.Color(255, 255, 255));
+
+        pm_btn.setBackground(new java.awt.Color(0, 0, 0));
+        pm_btn.setForeground(new java.awt.Color(0, 0, 0));
+        pm_btn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pm_btn.setText("PRIM");
+        pm_btn.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                pm_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Prim_btnLayout = new javax.swing.GroupLayout(Prim_btn);
+        Prim_btn.setLayout(Prim_btnLayout);
+        Prim_btnLayout.setHorizontalGroup(
+            Prim_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Prim_btnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pm_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        Prim_btnLayout.setVerticalGroup(
+            Prim_btnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Prim_btnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pm_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+        );
+
+        resultado.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout opciones1_panelLayout = new javax.swing.GroupLayout(opciones1_panel);
         opciones1_panel.setLayout(opciones1_panelLayout);
         opciones1_panelLayout.setHorizontalGroup(
             opciones1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opciones1_panelLayout.createSequentialGroup()
-                .addGap(0, 221, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(salir_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(opciones1_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(opciones1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kruskal_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Prim_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(opciones1_panelLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         opciones1_panelLayout.setVerticalGroup(
             opciones1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opciones1_panelLayout.createSequentialGroup()
                 .addComponent(salir_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 571, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(kruskal_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Prim_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,23 +270,112 @@ public class Gui extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opciones1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(opciones1_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(opciones1_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void salir_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_panelMouseClicked
         System.exit(0);
     }//GEN-LAST:event_salir_panelMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel1MouseClicked
+    {//GEN-HEADEREND:event_jLabel1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel3MouseClicked
+    {//GEN-HEADEREND:event_jLabel3MouseClicked
+        map_ss();
+        this.kp=new Kill_me();
+        kp.v=this;
+        cambiarPanel(this.input,kp);
+        this.jPanel1.setVisible(false);
+        jTextArea1.setText("Para crear una conexión (Arista) entre\n2 vertices (a y b), haga click sostenido\nsobre el primero (vertice a), arrastre\nel mouse hacia el segundo (vertice b)\ny luego libere el click.\n\n(MouseDraged de \"a\" a \"b\" )  ");
+        this.kruskal_btn.setVisible(true);
+        this.Prim_btn.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void inputMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_inputMouseClicked
+    {//GEN-HEADEREND:event_inputMouseClicked
+//        kp.clickOnMap(evt.getPoint());
+//        input.requestFocus();
+    }//GEN-LAST:event_inputMouseClicked
+
+    private void inputMousePressed(java.awt.event.MouseEvent evt)//GEN-FIRST:event_inputMousePressed
+    {//GEN-HEADEREND:event_inputMousePressed
+//        kp.startConnection(evt.getPoint());
+    }//GEN-LAST:event_inputMousePressed
+
+    private void inputMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_inputMouseReleased
+    {//GEN-HEADEREND:event_inputMouseReleased
+//        kp.endConnection(evt.getPoint());
+    }//GEN-LAST:event_inputMouseReleased
+
+    private void inputKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_inputKeyTyped
+    {//GEN-HEADEREND:event_inputKeyTyped
+//        if(kp.ant_selected!=null)if(evt.getKeyCode()==0)kp.delActualNode(kp.getGraphics());
+    }//GEN-LAST:event_inputKeyTyped
+
+    private void kk_btnMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_kk_btnMouseClicked
+    {//GEN-HEADEREND:event_kk_btnMouseClicked
+        kp.mostrar_camino(graphsarbol.GraphsArbol.grafo.kruskal());
+        kp.ant_selected = null;
+        resultado.setText("resultado: "+String.valueOf(graphsarbol.GraphsArbol.grafo.expansion));
+    }//GEN-LAST:event_kk_btnMouseClicked
+
+    private void pm_btnMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_pm_btnMouseClicked
+    {//GEN-HEADEREND:event_pm_btnMouseClicked
+        if(kp.ant_selected!=null)
+        {
+            kp.mostrar_camino(graphsarbol.GraphsArbol.grafo.prim(kp.ant_selected));
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(kp, "primero debe seleccionar un nodo");
+        }
+        kp.ant_selected = null;
+        resultado.setText("resultado: "+String.valueOf(graphsarbol.GraphsArbol.grafo.expansion));
+    }//GEN-LAST:event_pm_btnMouseClicked
+
+    private void repaint_input(Graphics g)
+    {
+        //g.clearRect(0, 0,input.getWidth(), input.getHeight());
+        //input.paint(g);
+        g.drawImage(new ImageIcon("/gui/seleccion_mapa.jpg").getImage(),input.getWidth(), input.getHeight(), input);
+    }
+    
+    
+    private void map_ss()
+    {
+        Rectangle r = new Rectangle(input.getLocationOnScreen().x,input.getLocationOnScreen().y+23,input.getWidth(),input.getHeight()-46);
+        
+        try
+        {
+            graphsarbol.GraphsArbol.save_screen_shot(r, "seleccion_mapa.jpg");
+        } catch (AWTException ex)
+        {
+            System.out.println("error gráfico en:");
+            //ex.printStackTrace();
+        } catch (IOException ex)
+        {
+            System.out.println("error de archivo en:");
+            //ex.printStackTrace();
+        }
+        
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -140,43 +411,41 @@ public class Gui extends javax.swing.JFrame {
         });
     }
 
-    private void map_ss()
-    {
-        Rectangle r = new Rectangle(input.getLocationOnScreen().x,input.getLocationOnScreen().y+23,input.getWidth(),input.getHeight()-46);
+    public void cambiarPanel(javax.swing.JPanel ant,javax.swing.JPanel content) {
+        ant.removeAll();
+        ant.revalidate();
+        ant.repaint();
         
-        try
-        {
-            graphsarbol.GraphsArbol.save_screen_shot(r, "src/gui/seleccion_mapa.jpg");
-        } catch (AWTException ex)
-        {
-            System.out.println("error gráfico en:");
-            ex.printStackTrace();
-        } catch (IOException ex)
-        {
-            System.out.println("error de archivo en:");
-            ex.printStackTrace();
-        }
-        
-    }
-    
-    public void cambiarPanel(javax.swing.JPanel content) {
-        this.input.removeAll();
-        
-        content.setBounds(this.input.getBounds());
+        content.setBounds(ant.getBounds());
         content.setVisible(true);
         content.setLocation(0,0);
         
-        this.input.add(content);
-        this.input.revalidate();
-        this.input.repaint();
+        ant.add(content);
+        ant.revalidate();
+        ant.repaint();
+        
         
     }
+    
+    
+    
+    Kill_me kp;
     
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Prim_btn;
     private javax.swing.JPanel input;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel kk_btn;
+    private javax.swing.JPanel kruskal_btn;
     private javax.swing.JPanel opciones1_panel;
+    private javax.swing.JLabel pm_btn;
+    private javax.swing.JLabel resultado;
     private javax.swing.JPanel salir_panel;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,20 +16,25 @@ public class Connection
 {
 
     //<editor-fold defaultstate="collapsed" desc="CONSTRUCTORES">
-    public Connection(Node start_point, Node end_point)
+    public Connection(Node start_point, Node end_point,int peso)
     {
         this.start_point = start_point;
         this.end_point = end_point;
         this.start_graphic= start_point.getCenter();
         this.end_graphic = end_point.getCenter();
         this.graph=(start_point.getGraph());
+        this.weight=peso;
     }
 
     public Connection(Node start_point, Node end_point, int weight, String name)
     {
-        this(start_point,end_point);
-        this.weight = weight;
+        this(start_point,end_point,weight);
         this.name = name;
+    }
+
+    Connection(int i)
+    {
+        this.weight=i;
     }
 
     //</editor-fold>

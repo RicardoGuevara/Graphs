@@ -81,6 +81,7 @@ public class Node <T extends Comparable>
     public int id;
     private static int actid = 0;
     public static int diameter = 50;
+    public boolean visitado=false;
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="GT & ST">
